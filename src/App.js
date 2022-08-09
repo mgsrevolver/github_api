@@ -8,14 +8,18 @@ function App() {
   const [avatarURL, setAvatarURL] = useState()
   const [githubUsername, setGitHubUsername] = useState()
   const [repoData, setRepoData] = useState()
+  const APIkey = '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'
+  const allModsURL =
+    'https://api.github.com/repos/roll20/roll20-api-scripts/git/trees/master'
 
   async function repoDataURL() {
-    //Get repo data about github user
-    await fetch(
-      'https://api.github.com/repos/roll20/roll20-api-scripts/git/trees/master'
-    )
-      // https://api.github.com/users/Roll20/repos
-      // https://api.github.com/repos/roll20/roll20-api-scripts/git/trees/master
+    //Get repo data about all mods in github
+    await fetch(allModsURL, {
+      method: 'GET',
+      headers: {
+        Authorization: APIkey,
+      },
+    })
       .then((res) => res.json())
       .then(
         (result) => {
@@ -57,7 +61,7 @@ function App() {
           <Card.Title>{githubUsername}</Card.Title>
 
           <Button variant="primary" onClick={repoDataURL}>
-            List my public repos!
+            Show me the mod library!
           </Button>
         </Card.Body>
       </Card>
