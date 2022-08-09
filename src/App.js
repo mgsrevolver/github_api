@@ -4,16 +4,12 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
 function App() {
-  const [avatarURL, setAvatarURL] = useState()
-  const [githubUsername, setGitHubUsername] = useState()
   const [repoData, setRepoData] = useState()
   const APIkey = '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'
   const allModsURL =
     'https://api.github.com/repos/roll20/roll20-api-scripts/git/trees/master'
-  const profileURL = 'https://api.github.com/users/Roll20'
 
   async function repoDataURL() {
-    //Get repo data about all mods in github
     await fetch(allModsURL, {
       method: 'GET',
       headers: {
@@ -45,10 +41,7 @@ function App() {
   return (
     <div className="App w-100 min-vh-100 justify-content-center align-items-center d-flex flex-column">
       <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={avatarURL} />
         <Card.Body>
-          <Card.Title>{githubUsername}</Card.Title>
-
           <Button variant="primary" onClick={repoDataURL}>
             Show me the mod library!
           </Button>
